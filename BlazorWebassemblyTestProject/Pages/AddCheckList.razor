@@ -1,0 +1,19 @@
+﻿@page "/AddCheckList"
+
+<h3>AddCheckList</h3>
+<span>CheckList Name</span>
+<input @bind="CheckListName" type="text">
+<button @onclick="CreateCheckList">Create Checklist</button>
+
+@code {
+
+    public string CheckListName { get; set; }
+    
+    public void CreateCheckList()
+    {
+        // add here checklist
+        var request = new HttpRequestMessage(HttpMethod.Get, "https://api.github.com/repos/dotnet/AspNetCore.Docs/branches");
+        request.Headers.Add("Accept", "application/vnd.github.v3+json");
+        request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
+    }
+}

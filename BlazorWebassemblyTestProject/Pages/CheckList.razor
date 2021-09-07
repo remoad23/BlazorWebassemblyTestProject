@@ -1,0 +1,68 @@
+﻿@page "/CheckList"
+@using System.Text.Json
+@using Microsoft.AspNetCore.SignalR.Client
+@using BlazorWebassemblyTestProject.Entities
+@using BlazorWebassemblyWebAPI.Repository
+@using Microsoft.AspNetCore.Components
+@inject NavigationManager NavigationManager
+@inject CheckListHttpClient CheckListHttpClient
+@inject EntryHttpClient EntryHttpClient
+
+
+<h2>CheckList</h2>
+@foreach (Tuple<Entities.CheckList,List<Entities.Entry>> checkList in CheckLists)
+    {
+        <h3>@checkList.Item1.CheckListName</h3>
+        <table>
+            <thead>
+            <th>Description</th>
+            <th>Status</th>
+            </thead>
+            @foreach (Entities.Entry entry in checkList.Item2)
+                {
+                    <tr>
+                        <td>@entry.EntryText</td>
+                        <td>@(entry.IsDone ? " Done" : " In progress")</td>
+                        <td @onclick="() => DeleteEntry(entry)">
+                            <button>Entfernen</button>
+                        </td>
+                    </tr>
+                }
+                <AddChecklistEntry EntryAdded="() => this.StateHasChanged()" CheckListId="@checkList.Item1.Id"></AddChecklistEntry>
+        </table>
+    }
+
+<AddChecklistEntry EntryAdded="() => this.StateHasChanged()"></AddChecklistEntry>
+
+@code {
+
+    public List<Tuple<Entities.CheckList,List<Entities.Entry>>> CheckLists { get; set; } = new List<Tuple<Entities.CheckList,List<Entities.Entry>>>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            CheckLists = await CheckListHttpClient.GetAllCheckLists();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    
+
+
+    public async Task DeleteEntry(Entities.Entry index)
+    {
+        try
+        {
+            await EntryHttpClient.DeleteEntry(index.Id.ToString());
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+}

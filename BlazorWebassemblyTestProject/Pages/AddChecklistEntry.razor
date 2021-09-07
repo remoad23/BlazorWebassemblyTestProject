@@ -1,0 +1,55 @@
+﻿@page "/AddChecklistEntry"
+@using System.ComponentModel.DataAnnotations
+
+
+@*<EditForm Model="EntryText" OnValidSubmit="SubmitForm">
+    <span>Entry</span>
+    <br/>
+    <input type="text" @bind="EntryText"/>
+    <br/>
+    <button style="margin-top: 20px;" type="submit">Add Entry</button>
+</EditForm>*@
+
+<h4>AddChecklistEntry</h4>
+
+<tr style="border: none">
+    <td style="border: none">EntryText</td>
+    <td style="border: none"><input type="text" @bind-value="EntryText" /></td>
+    <td style="border: none"><button type="button" @onclick="@SubmitForm">Add Entry</button></td>
+</tr>
+
+@code {
+
+    [Parameter] 
+    public Guid CheckListId { get; set; }
+    
+    
+    public string EntryText = "";
+
+    [Parameter]
+    public EventCallback EntryAdded { get; set; }
+
+    void SubmitForm()
+    {
+        // add here entries
+        var request = new HttpRequestMessage(HttpMethod.Get, "https://api.github.com/repos/dotnet/AspNetCore.Docs/branches");
+        request.Headers.Add("Accept", "application/vnd.github.v3+json");
+        request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
+    //   var client = ClientFactory.CreateClient();
+
+    //    var response = await client.SendAsync(request);
+
+    /*
+        if (response.IsSuccessStatusCode)
+        {
+            //using var responseStream = await response.Content.ReadAsStreamAsync();
+            //branches = await JsonSerializer.DeserializeAsync<IEnumerable<GitHubBranch>>(responseStream);
+        }
+        else
+        {
+           // getBranchesError = true;
+        } */
+        
+        this.EntryAdded.InvokeAsync(null);
+    }
+}
