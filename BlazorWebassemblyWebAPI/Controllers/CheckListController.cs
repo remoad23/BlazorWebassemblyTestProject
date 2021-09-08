@@ -35,13 +35,11 @@ namespace BlazorWebassemblyWebAPI.Controllers
                 checkListsToPass.Add(new Tuple<CheckList,List<Entry>>(checklist,entry));
             }
             return checkListsToPass;
-            
-            
         }
         
         [HttpPost]
         [Route("API/CreateCheckList")]
-        public ActionResult<CheckList> CreateCheckList(string checkListName)
+        public ActionResult<CheckList> CreateCheckList([FromBody]string checkListName)
         {
             var checklist = new CheckList
             {
@@ -54,10 +52,11 @@ namespace BlazorWebassemblyWebAPI.Controllers
         }
         
         [HttpDelete]
-        [Route("API/DeleteCheckList")]
-        public ActionResult DeleteCheckList()
+        [Route("API/DeleteCheckList/{checkListId}")]
+        public ActionResult DeleteCheckList(Guid checkListId)
         {
-            Context.CheckLists.ToList();
+            var checklist = Context.CheckLists.Find(checkListId);
+            Context.CheckLists.Remove(checklist);
             Context.SaveChanges();
             return Ok();
         }

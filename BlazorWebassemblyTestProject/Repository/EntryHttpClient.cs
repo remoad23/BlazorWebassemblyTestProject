@@ -26,15 +26,14 @@ namespace BlazorWebassemblyWebAPI.Repository
             return await this.Http.GetFromJsonAsync<List<Entry>>("API/GetAllEntries");
         }
         
-        public async Task<Entry> CreateEntry(string entryText)
+        public async Task CreateEntry(Entry _entry)
         {
-            var entry = await this.Http.PostAsJsonAsync<string>("API/CreateEntry",entryText);
-            return new Entry();
+            var entry = await this.Http.PostAsJsonAsync<Entry>("API/CreateEntry",_entry);
         }
         
-        public async Task DeleteEntry(string entryId)
+        public async Task DeleteEntry(Entry entry)
         {
-            await this.Http.DeleteAsync($"API/DeleteEntry/{entryId}");
+            await this.Http.DeleteAsync($"API/DeleteEntry/{entry.Id}");
         }
         
         /*

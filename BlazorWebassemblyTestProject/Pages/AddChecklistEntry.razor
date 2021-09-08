@@ -1,5 +1,9 @@
 ﻿@page "/AddChecklistEntry"
 @using System.ComponentModel.DataAnnotations
+@using System
+@using BlazorWebassemblyTestProject.Entities
+@using BlazorWebassemblyWebAPI.Repository
+@inject EntryHttpClient EntryHttpClient
 
 
 @*<EditForm Model="EntryText" OnValidSubmit="SubmitForm">
@@ -19,37 +23,30 @@
 </tr>
 
 @code {
-
-    [Parameter] 
-    public Guid CheckListId { get; set; }
     
-    
-    public string EntryText = "";
-
     [Parameter]
-    public EventCallback EntryAdded { get; set; }
+    public EventCallback EventAdded { get; set; }
 
-    void SubmitForm()
+    [CascadingParameter(Name="EntryList")]
+    private List<Entities.Entry> Entries { get; set; }
+    
+    [CascadingParameter(Name="CheckListId")]
+    private Guid CheckListId { get; set; }
+    
+    private string EntryText = "";
+    
+
+    private async Task SubmitForm()
     {
-        // add here entries
-        var request = new HttpRequestMessage(HttpMethod.Get, "https://api.github.com/repos/dotnet/AspNetCore.Docs/branches");
-        request.Headers.Add("Accept", "application/vnd.github.v3+json");
-        request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
-    //   var client = ClientFactory.CreateClient();
-
-    //    var response = await client.SendAsync(request);
-
-    /*
-        if (response.IsSuccessStatusCode)
+        var entry = new Entry
         {
-            //using var responseStream = await response.Content.ReadAsStreamAsync();
-            //branches = await JsonSerializer.DeserializeAsync<IEnumerable<GitHubBranch>>(responseStream);
-        }
-        else
-        {
-           // getBranchesError = true;
-        } */
-        
-        this.EntryAdded.InvokeAsync(null);
+            Id = Guid.NewGuid(),
+            EntryText = EntryText,
+            CheckListId = CheckListId
+        };
+        Entries.Add(entry);
+
+        await EntryHttpClient.CreateEntry(entry);
+        await this.EventAdded.InvokeAsync(null);
     }
 }

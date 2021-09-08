@@ -31,24 +31,16 @@ namespace BlazorWebassemblyWebAPI.Controllers
         
         [HttpPost]
         [Route("API/CreateEntry")]
-        public ActionResult<Entry> CreateEntry(Guid checkListId,string text)
+        public ActionResult<Entry> CreateEntry([FromBody]Entry entry)
         {
-            var entry = new Entry
-            {
-                Id = Guid.NewGuid(),
-                IsDone = false,
-                CheckListId = checkListId,
-                EntryText = text
-            };
             Context.Entries.Add(entry);
-
             Context.SaveChanges();
             return entry;
         }
         
         [HttpDelete]
         [Route("API/DeleteEntry/{entryId}")]
-        public ActionResult DeleteEntry(string entryId)
+        public ActionResult DeleteEntry(Guid entryId)
         {
             var entry = Context.Entries.Find(entryId);
             Context.Entries.Remove(entry);

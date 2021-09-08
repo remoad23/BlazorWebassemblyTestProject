@@ -1,4 +1,6 @@
 ﻿@page "/AddCheckList"
+@using BlazorWebassemblyWebAPI.Repository
+@inject CheckListHttpClient CheckListHttpClient
 
 <h3>AddCheckList</h3>
 <span>CheckList Name</span>
@@ -7,13 +9,20 @@
 
 @code {
 
-    public string CheckListName { get; set; }
+    private string CheckListName { get; set; }
     
-    public void CreateCheckList()
+    private async Task CreateCheckList()
     {
-        // add here checklist
-        var request = new HttpRequestMessage(HttpMethod.Get, "https://api.github.com/repos/dotnet/AspNetCore.Docs/branches");
-        request.Headers.Add("Accept", "application/vnd.github.v3+json");
-        request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
+        try
+        {
+            await CheckListHttpClient.CreateCheckList(CheckListName);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
     }
+    
 }

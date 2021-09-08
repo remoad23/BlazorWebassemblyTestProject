@@ -34,7 +34,7 @@ namespace BlazorWebassemblyWebAPI.Repository
         
         public async Task DeleteCheckList(Guid checkList)
         {
-            await this.Http.DeleteAsync("API/DeleteCheckList");
+            await this.Http.DeleteAsync($"API/DeleteCheckList/{checkList}");
         }
     }
 }
