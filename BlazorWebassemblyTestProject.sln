@@ -1,8 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebassemblyTestProject", "BlazorWebassemblyTestProject\BlazorWebassemblyTestProject.csproj", "{ED857518-5FF1-4F56-B176-D31BF1D73BB3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebassemblyWebAPI", "BlazorWebassemblyWebAPI\BlazorWebassemblyWebAPI.csproj", "{71EE6A75-82DE-4FF0-BFBD-961D25782A74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWASMProject", "BlazorWASMProject\BlazorWASMProject.csproj", "{B0B57868-E9B9-4AF1-B55C-87F229D69639}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckListLibrary", "CheckListLibrary\CheckListLibrary.csproj", "{F209AE0E-407C-4486-9401-82BBB00B324E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,13 +12,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{ED857518-5FF1-4F56-B176-D31BF1D73BB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ED857518-5FF1-4F56-B176-D31BF1D73BB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ED857518-5FF1-4F56-B176-D31BF1D73BB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ED857518-5FF1-4F56-B176-D31BF1D73BB3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{71EE6A75-82DE-4FF0-BFBD-961D25782A74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{71EE6A75-82DE-4FF0-BFBD-961D25782A74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71EE6A75-82DE-4FF0-BFBD-961D25782A74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71EE6A75-82DE-4FF0-BFBD-961D25782A74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0B57868-E9B9-4AF1-B55C-87F229D69639}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0B57868-E9B9-4AF1-B55C-87F229D69639}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0B57868-E9B9-4AF1-B55C-87F229D69639}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0B57868-E9B9-4AF1-B55C-87F229D69639}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F209AE0E-407C-4486-9401-82BBB00B324E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F209AE0E-407C-4486-9401-82BBB00B324E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F209AE0E-407C-4486-9401-82BBB00B324E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F209AE0E-407C-4486-9401-82BBB00B324E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

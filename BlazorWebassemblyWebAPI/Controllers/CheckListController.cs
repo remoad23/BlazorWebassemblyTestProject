@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BlazorTestProject.Entities;
+using CheckListLibrary;
+using CheckListLibrary.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -9,18 +11,24 @@ namespace BlazorWebassemblyWebAPI.Controllers
 {
     public class CheckListController : Controller
     {
-
-        private BlazorContext Context;
-        public CheckListController(BlazorContext context)
+        private IGenericRepository<CheckList> CheckListRepository;
+        private IGenericRepository<Entry> EntryRepository;
+        
+        public CheckListController(BlazorContext context,
+            IGenericRepository<CheckList> checkListRepository,
+            IGenericRepository<Entry> entryRepository)
         {
-            Context = context;
+            EntryRepository = entryRepository;
+            CheckListRepository = checkListRepository;
         }
         
         [HttpGet]
         [Route("API/GetCheckList")]
         public ActionResult<CheckList> GetCheckList(Guid checkListId)
         {
-            return Context.CheckLists.Find(checkListId);
+            return CheckListRepository
+                .Find(ch => ch.Id.Equals(checkListId.ToString()))
+                .FirstOrDefault();
         }
         
         [HttpGet]
@@ -28,10 +36,12 @@ namespace BlazorWebassemblyWebAPI.Controllers
         public ActionResult< List<Tuple<CheckList,List<Entry>>> > GetAllCheckLists()
         {
             List<Tuple<CheckList,List<Entry>>> checkListsToPass = new List<Tuple<CheckList,List<Entry>>>();
-            List<CheckList> checklists = Context.CheckLists.ToList();
+            List<CheckList> checklists = CheckListRepository.GetAll().ToList();
             foreach(CheckList checklist in checklists)
             {
-                var entry = Context.Entries.Where(e => e.CheckListId.Equals(checklist.Id)).ToList();
+                var entry = EntryRepository
+                    .Find(e => e.CheckListId.Equals(checklist.Id))
+                    .ToList();
                 checkListsToPass.Add(new Tuple<CheckList,List<Entry>>(checklist,entry));
             }
             return checkListsToPass;
@@ -46,8 +56,8 @@ namespace BlazorWebassemblyWebAPI.Controllers
                 Id = Guid.NewGuid(),
                 CheckListName = checkListName
             };
-            Context.CheckLists.Add(checklist);
-            Context.SaveChanges();
+            CheckListRepository.Add(checklist);
+            CheckListRepository.Complete();
             return checklist;
         }
         
@@ -55,9 +65,11 @@ namespace BlazorWebassemblyWebAPI.Controllers
         [Route("API/DeleteCheckList/{checkListId}")]
         public ActionResult DeleteCheckList(Guid checkListId)
         {
-            var checklist = Context.CheckLists.Find(checkListId);
-            Context.CheckLists.Remove(checklist);
-            Context.SaveChanges();
+            var checkList = CheckListRepository
+                .Find(ch => ch.Id.Equals(checkListId.ToString()))
+                .FirstOrDefault();
+            CheckListRepository.Remove(checkList);
+            CheckListRepository.Complete();
             return Ok();
         }
         

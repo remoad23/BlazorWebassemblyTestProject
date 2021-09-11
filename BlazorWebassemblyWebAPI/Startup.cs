@@ -5,6 +5,9 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using BlazorTestProject.Entities;
 using BlazorWebassemblyWebAPI.Controllers;
+using BlazorWebassemblyWebAPI.Repositories;
+using CheckListLibrary;
+using CheckListLibrary.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,7 +37,7 @@ namespace BlazorWebassemblyWebAPI
             services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             services.AddRazorPages();
-            
+
             services.AddResponseCompression(opts =>
             {
                 opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "application/octet-stream" });
@@ -43,12 +46,12 @@ namespace BlazorWebassemblyWebAPI
             services.AddDbContext<BlazorContext>(options =>
                 options.UseSqlite("Data Source=BlazorContext.db"));
             
+            services.AddTransient(typeof(IGenericRepository<>),typeof(BlazorRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            
             app.UseCors("MyPolicy");
             app.UseResponseCompression();
             
@@ -70,7 +73,6 @@ namespace BlazorWebassemblyWebAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<CheckListHub>("/checklisthub");
             });
         }
     }

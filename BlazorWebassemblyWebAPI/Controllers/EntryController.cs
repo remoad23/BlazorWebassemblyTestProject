@@ -2,39 +2,42 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BlazorTestProject.Entities;
+using CheckListLibrary;
+using CheckListLibrary.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorWebassemblyWebAPI.Controllers
 {
     public class EntryController : Controller
     {
-        
-        private BlazorContext Context;
-        public EntryController(BlazorContext context)
+        private IGenericRepository<Entry> EntryRepository;
+        public EntryController(IGenericRepository<Entry> entry1Repository)
         {
-            Context = context;
+            EntryRepository = entry1Repository;
         }
 
         [HttpGet]
         [Route("API/GetAllEntries")]
         public ActionResult<List<Entry>> GetAllEntries()
         {
-            return Context.Entries.ToList();
+            return EntryRepository.GetAll().ToList();
         }
         
         [HttpGet]
         [Route("API/GetEntry")]
         public ActionResult<Entry> GetEntry(string entryId)
         {
-            return Context.Entries.Find(entryId);
+            return EntryRepository
+                .Find(e => e.Id.Equals(entryId.ToString()) )
+                .FirstOrDefault();
         }
         
         [HttpPost]
         [Route("API/CreateEntry")]
         public ActionResult<Entry> CreateEntry([FromBody]Entry entry)
         {
-            Context.Entries.Add(entry);
-            Context.SaveChanges();
+            EntryRepository.Add(entry);
+            EntryRepository.Complete();
             return entry;
         }
         
@@ -42,9 +45,11 @@ namespace BlazorWebassemblyWebAPI.Controllers
         [Route("API/DeleteEntry/{entryId}")]
         public ActionResult DeleteEntry(Guid entryId)
         {
-            var entry = Context.Entries.Find(entryId);
-            Context.Entries.Remove(entry);
-            Context.SaveChanges();
+            var entry = EntryRepository
+                .Find(e => e.Id.Equals(entryId.ToString()) )
+                .FirstOrDefault();
+            EntryRepository.Remove(entry);
+            EntryRepository.Complete();
             return Ok();
         }
     }
