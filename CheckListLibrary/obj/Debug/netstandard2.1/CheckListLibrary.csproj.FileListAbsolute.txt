@@ -1,0 +1,10 @@
+C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\CheckListLibrary\bin\Debug\netstandard2.1\CheckListLibrary.deps.json
+C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\CheckListLibrary\bin\Debug\netstandard2.1\CheckListLibrary.dll
+C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\CheckListLibrary\bin\Debug\netstandard2.1\CheckListLibrary.pdb
+C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.AssemblyInfoInputs.cache
+C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.AssemblyInfo.cs
+C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.csproj.CoreCompileInputs.cache
+C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.dll
+C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.pdb
+C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.csprojAssemblyReference.cache

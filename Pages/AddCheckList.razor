@@ -1,0 +1,27 @@
+﻿@page "/AddCheckList"
+@using BlazorWebassemblyWebAPI.Repository
+@inject CheckListHttpClient CheckListHttpClient
+
+<h3>AddCheckList</h3>
+<span>CheckList Name</span>
+<input @bind="CheckListName" type="text">
+<button @onclick="CreateCheckList">Create Checklist</button>
+
+@code {
+
+    private string CheckListName { get; set; }
+    
+    private async Task CreateCheckList()
+    {
+        try
+        {
+            await CheckListHttpClient.CreateCheckList(CheckListName);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    
+}

@@ -1,0 +1,52 @@
+﻿@page "/AddChecklistEntry"
+@using System.ComponentModel.DataAnnotations
+@using System
+@using BlazorWASMProject.Entities
+@using BlazorWebassemblyWebAPI.Repository
+@inject EntryHttpClient EntryHttpClient
+
+
+@*<EditForm Model="EntryText" OnValidSubmit="SubmitForm">
+    <span>Entry</span>
+    <br/>
+    <input type="text" @bind="EntryText"/>
+    <br/>
+    <button style="margin-top: 20px;" type="submit">Add Entry</button>
+</EditForm>*@
+
+<h4>AddChecklistEntry</h4>
+
+<tr style="border: none">
+    <td style="border: none">EntryText</td>
+    <td style="border: none"><input type="text" @bind-value="EntryText" /></td>
+    <td style="border: none"><button type="button" @onclick="@SubmitForm">Add Entry</button></td>
+</tr>
+
+@code {
+    
+    [Parameter]
+    public EventCallback EventAdded { get; set; }
+
+    [CascadingParameter(Name="EntryList")]
+    private List<Entities.Entry> Entries { get; set; }
+    
+    [CascadingParameter(Name="CheckListId")]
+    private Guid CheckListId { get; set; }
+    
+    private string EntryText = "";
+    
+
+    private async Task SubmitForm()
+    {
+        var entry = new Entry
+        {
+            Id = Guid.NewGuid(),
+            EntryText = EntryText,
+            CheckListId = CheckListId
+        };
+        Entries.Add(entry);
+
+        await EntryHttpClient.CreateEntry(entry);
+        await this.EventAdded.InvokeAsync(null);
+    }
+}

@@ -1,0 +1,89 @@
+﻿@page "/CheckList"
+@using System.Text.Json
+@using BlazorWASMProject.Entities
+@using BlazorWebassemblyWebAPI.Repository
+@using Microsoft.AspNetCore.Components
+@inject NavigationManager NavigationManager
+@inject CheckListHttpClient CheckListHttpClient
+@inject EntryHttpClient EntryHttpClient
+
+<h2>CheckList</h2>
+@foreach (Tuple<Entities.CheckList, List<Entities.Entry>> checkList in CheckLists)
+{
+    <div style="background-color: deepskyblue;height: 500px;width: 600px; margin-bottom: 50px;border-radius: 10px;padding: 10px">
+        <button style="margin-left: 500px" @onclick="() => DeleteCheckList(checkList)">Delete Checklist</button>
+        <h3>@checkList.Item1.CheckListName</h3>
+        <table style="margin-bottom: 50px">
+            <thead style="font-size: 1.3em">
+            <th style="width: 300px">Text</th>
+            <th style="width: 100px">Description</th>
+            <th style="width: 100px">Status</th>
+            </thead>
+            @foreach (Entities.Entry entry in checkList.Item2)
+            {
+                <tr>
+                    <td style="width: 300px">@entry.EntryText</td>
+                    <td style="width: 100px">@(entry.IsDone ? " Done" : " In progress")</td>
+                    <td style="width: 100px" @onclick="() => DeleteEntry(entry, checkList.Item2)">
+                        <button>Entfernen</button>
+                    </td>
+                </tr>
+            }
+        </table>
+        <CascadingValue Value="checkList.Item2" Name="EntryList">
+            <CascadingValue Value="checkList.Item1.Id" Name="CheckListId">
+                <AddChecklistEntry EventAdded="() => this.StateHasChanged()"></AddChecklistEntry>
+            </CascadingValue>
+        </CascadingValue>
+
+    </div>
+}
+
+@code {
+
+    public List<Tuple<Entities.CheckList,List<Entities.Entry>>> CheckLists { get; set; } = new List<Tuple<Entities.CheckList,List<Entities.Entry>>>();
+
+    private async Task DeleteCheckList(Tuple<Entities.CheckList,List<Entities.Entry>> checkList)
+    {
+        try
+        {
+            await CheckListHttpClient.DeleteCheckList(checkList.Item1.Id);
+            CheckLists.Remove(checkList);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        this.StateHasChanged();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            CheckLists = await CheckListHttpClient.GetAllCheckLists();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task DeleteEntry(Entities.Entry entry,List<Entities.Entry> entityList)
+    {
+        try
+        {
+            await EntryHttpClient.DeleteEntry(entry);
+            entityList.Remove(entry);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        this.StateHasChanged();
+    }
+    
+}
