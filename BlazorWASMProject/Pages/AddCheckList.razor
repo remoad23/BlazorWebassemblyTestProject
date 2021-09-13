@@ -1,6 +1,7 @@
 ﻿@page "/AddCheckList"
 @using BlazorWebassemblyWebAPI.Repository
-@inject CheckListHttpClient CheckListHttpClient
+@using CheckListLibrary.Interfaces
+@inject IGenericRepository<Entities.CheckList> ChecklistRepository
 
 <h3>AddCheckList</h3>
 <span>CheckList Name</span>
@@ -15,7 +16,12 @@
     {
         try
         {
-            await CheckListHttpClient.CreateCheckList(CheckListName);
+            Entities.CheckList list = new()
+            {
+                Id = Guid.NewGuid(),
+                CheckListName = CheckListName
+            };
+            ChecklistRepository.Add(list);
         }
         catch (Exception e)
         {

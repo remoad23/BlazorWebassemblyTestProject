@@ -3,7 +3,8 @@
 @using System
 @using BlazorWASMProject.Entities
 @using BlazorWebassemblyWebAPI.Repository
-@inject EntryHttpClient EntryHttpClient
+@using CheckListLibrary.Interfaces
+@inject IGenericRepository<Entry> EntryRepository
 
 
 @*<EditForm Model="EntryText" OnValidSubmit="SubmitForm">
@@ -46,7 +47,7 @@
         };
         Entries.Add(entry);
 
-        await EntryHttpClient.CreateEntry(entry);
+        EntryRepository.Add(entry);
         await this.EventAdded.InvokeAsync(null);
     }
 }

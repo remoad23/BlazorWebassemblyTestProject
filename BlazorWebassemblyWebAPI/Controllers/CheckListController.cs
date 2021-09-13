@@ -32,33 +32,20 @@ namespace BlazorWebassemblyWebAPI.Controllers
         }
         
         [HttpGet]
-        [Route("API/GetAllCheckLists")]
-        public ActionResult< List<Tuple<CheckList,List<Entry>>> > GetAllCheckLists()
+        [Route("API/GetAllCheckList")]
+        public ActionResult<List<CheckList>> GetAllCheckLists()
         {
-            List<Tuple<CheckList,List<Entry>>> checkListsToPass = new List<Tuple<CheckList,List<Entry>>>();
-            List<CheckList> checklists = CheckListRepository.GetAll().ToList();
-            foreach(CheckList checklist in checklists)
-            {
-                var entry = EntryRepository
-                    .Find(e => e.CheckListId.Equals(checklist.Id))
-                    .ToList();
-                checkListsToPass.Add(new Tuple<CheckList,List<Entry>>(checklist,entry));
-            }
-            return checkListsToPass;
+            List<CheckList> checklists = CheckListRepository.GetAll(true,e => ((CheckList)e).Entries).ToList();
+            return checklists;
         }
         
         [HttpPost]
         [Route("API/CreateCheckList")]
-        public ActionResult<CheckList> CreateCheckList([FromBody]string checkListName)
+        public ActionResult<CheckList> CreateCheckList([FromBody]CheckList checkList)
         {
-            var checklist = new CheckList
-            {
-                Id = Guid.NewGuid(),
-                CheckListName = checkListName
-            };
-            CheckListRepository.Add(checklist);
+            CheckListRepository.Add(checkList);
             CheckListRepository.Complete();
-            return checklist;
+            return checkList;
         }
         
         [HttpDelete]

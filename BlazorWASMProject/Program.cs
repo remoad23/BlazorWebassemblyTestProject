@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Text;
 using BlazorWASMProject;
+using BlazorWASMProject.Repository;
 using BlazorWebassemblyWebAPI.Repository;
+using CheckListLibrary.Interfaces;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,13 +19,11 @@ namespace BlazorWASMProject
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            var baseAdress = new Uri("https://localhost:5001/");
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddScoped(sp => new HttpClient {BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)});
 
-            builder.Services.AddHttpClient<CheckListHttpClient>(client => client.BaseAddress = baseAdress); 
-            builder.Services.AddHttpClient<EntryHttpClient>(client => client.BaseAddress = baseAdress);
+            builder.Services.AddTransient(typeof(IGenericRepository<>),typeof(GenericRepository<>));
 
             builder.Services.AddOidcAuthentication(options =>
             {

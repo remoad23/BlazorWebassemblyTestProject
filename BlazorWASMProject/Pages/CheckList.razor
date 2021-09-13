@@ -2,52 +2,52 @@
 @using System.Text.Json
 @using BlazorWASMProject.Entities
 @using BlazorWebassemblyWebAPI.Repository
+@using CheckListLibrary.Interfaces
 @using Microsoft.AspNetCore.Components
 @inject NavigationManager NavigationManager
-@inject CheckListHttpClient CheckListHttpClient
-@inject EntryHttpClient EntryHttpClient
+@inject IGenericRepository<Entities.CheckList> CheckListRepository
+@inject IGenericRepository<Entities.Entry> EntryRepository
 
 <h2>CheckList</h2>
-@foreach (Tuple<Entities.CheckList, List<Entities.Entry>> checkList in CheckLists)
+@foreach (Entities.CheckList checkList in CheckLists)
 {
     <div style="background-color: deepskyblue;height: 500px;width: 600px; margin-bottom: 50px;border-radius: 10px;padding: 10px">
         <button style="margin-left: 500px" @onclick="() => DeleteCheckList(checkList)">Delete Checklist</button>
-        <h3>@checkList.Item1.CheckListName</h3>
+        <h3>@checkList.CheckListName</h3>
         <table style="margin-bottom: 50px">
             <thead style="font-size: 1.3em">
             <th style="width: 300px">Text</th>
             <th style="width: 100px">Description</th>
             <th style="width: 100px">Status</th>
             </thead>
-            @foreach (Entities.Entry entry in checkList.Item2)
+            @foreach (Entities.Entry entry in checkList.Entries)
             {
                 <tr>
                     <td style="width: 300px">@entry.EntryText</td>
                     <td style="width: 100px">@(entry.IsDone ? " Done" : " In progress")</td>
-                    <td style="width: 100px" @onclick="() => DeleteEntry(entry, checkList.Item2)">
+                    <td style="width: 100px" @onclick="() => DeleteEntry(entry, checkList.Entries)">
                         <button>Entfernen</button>
                     </td>
                 </tr>
             }
         </table>
-        <CascadingValue Value="checkList.Item2" Name="EntryList">
-            <CascadingValue Value="checkList.Item1.Id" Name="CheckListId">
+        <CascadingValue Value="checkList.Entries" Name="EntryList">
+            <CascadingValue Value="checkList.Id" Name="CheckListId">
                 <AddChecklistEntry EventAdded="() => this.StateHasChanged()"></AddChecklistEntry>
             </CascadingValue>
         </CascadingValue>
-
     </div>
 }
 
 @code {
 
-    public List<Tuple<Entities.CheckList,List<Entities.Entry>>> CheckLists { get; set; } = new List<Tuple<Entities.CheckList,List<Entities.Entry>>>();
+    public List<Entities.CheckList> CheckLists { get; set; } = new List<Entities.CheckList>();
 
-    private async Task DeleteCheckList(Tuple<Entities.CheckList,List<Entities.Entry>> checkList)
+    private async Task DeleteCheckList(Entities.CheckList checkList)
     {
         try
         {
-            await CheckListHttpClient.DeleteCheckList(checkList.Item1.Id);
+            CheckListRepository.Remove(checkList);
             CheckLists.Remove(checkList);
         }
         catch (Exception e)
@@ -62,7 +62,8 @@
     {
         try
         {
-            CheckLists = await CheckListHttpClient.GetAllCheckLists();
+            CheckLists = CheckListRepository.GetAll().ToList();
+            Console.WriteLine("CheckLists:  "+CheckLists.Count);
         }
         catch (Exception e)
         {
@@ -75,7 +76,7 @@
     {
         try
         {
-            await EntryHttpClient.DeleteEntry(entry);
+            EntryRepository.Remove(entry);
             entityList.Remove(entry);
         }
         catch (Exception e)

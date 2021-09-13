@@ -29,9 +29,12 @@ namespace CheckListLibrary
         {
             return _context.Set<T>().Where(expression);
         }
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(bool withEntity = false,Expression<Func<Object, Object>> expression = null)
         {
-            return _context.Set<T>().ToList();
+            var list =_context.Set<T>();
+            if (withEntity)
+                list.Include(expression);
+            return list;
         }
         public T GetById(int id)
         {

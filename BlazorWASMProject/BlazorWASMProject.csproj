@@ -20,4 +20,8 @@
       <Folder Include="obj\Debug\net5.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\CheckListLibrary\CheckListLibrary.csproj" />
+    </ItemGroup>
+
 </Project>
