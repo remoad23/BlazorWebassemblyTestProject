@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -8,6 +9,7 @@ using BlazorWASMProject.Entities;
 using CheckListLibrary.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace BlazorWASMProject.Repository
 {
@@ -32,12 +34,14 @@ namespace BlazorWASMProject.Repository
             return Task.Run( () => this.Http.GetFromJsonAsync<T>($"{Url}/Get{TypeName}/{id}")).Result;
         }
 
-        public IEnumerable<T> GetAll(bool withEntity = false,Expression<Func<Object, Object>> expression = null)
+        public async Task<IEnumerable<T>> GetAll(string entityToInclude = "")
         {
-            return Task.Run( async () => await this.Http.GetFromJsonAsync<List<T>>($"{Url}/GetAll{TypeName}")).Result;
+            var result = await this.Http.GetFromJsonAsync<List<T>>($"{Url}/GetAll{TypeName}")
+                 .ConfigureAwait(continueOnCapturedContext: false);
+                
+             return  result;
         }
-        
-        
+
         public void Add(T entity)
         {
             Task.Run( () => this.Http.PostAsJsonAsync<T>($"{Url}/Create{TypeName}",entity));

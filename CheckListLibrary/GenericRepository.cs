@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using CheckListLibrary.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,14 +30,19 @@ namespace CheckListLibrary
         {
             return _context.Set<T>().Where(expression);
         }
-        public IEnumerable<T> GetAll(bool withEntity = false,Expression<Func<Object, Object>> expression = null)
+        
+        public Task<IEnumerable<T>>  GetAll(string entityToInclude = "")
         {
-            var list =_context.Set<T>();
-            if (withEntity)
-                list.Include(expression);
-            return list;
+            if (!entityToInclude.Equals(""))
+            {
+                return Task.FromResult(_context.Set<T>().Include("Entries").AsEnumerable());
+            }
+            else 
+            {
+                return Task.FromResult(_context.Set<T>().AsEnumerable());
+            }
         }
-        public T GetById(int id)
+        public T GetById(int id) 
         {
             return _context.Set<T>().Find(id);
         }

@@ -1,6 +1,7 @@
 ﻿@page "/CheckList"
 @using System.Text.Json
 @using BlazorWASMProject.Entities
+@using BlazorWASMProject.Repository
 @using BlazorWebassemblyWebAPI.Repository
 @using CheckListLibrary.Interfaces
 @using Microsoft.AspNetCore.Components
@@ -62,8 +63,8 @@
     {
         try
         {
-            CheckLists = CheckListRepository.GetAll().ToList();
-            Console.WriteLine("CheckLists:  "+CheckLists.Count);
+            var checkListToPass = await CheckListRepository.GetAll().ConfigureAwait(false);
+            CheckLists = checkListToPass.ToList();
         }
         catch (Exception e)
         {

@@ -20,7 +20,8 @@ namespace BlazorWebassemblyWebAPI.Controllers
         [Route("API/GetAllEntry")]
         public ActionResult<List<Entry>> GetAllEntries()
         {
-            return EntryRepository.GetAll().ToList();
+            var entries =  EntryRepository.GetAll().Result;
+            return Ok(entries);
         }
         
         [HttpGet]

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace CheckListLibrary.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
         T GetById(int id);
-        IEnumerable<T> GetAll(bool withEntity = false,Expression<Func<Object, Object>> expression = null);
+        Task<IEnumerable<T>>  GetAll(string entityToInclude = "");
         IEnumerable<T> Find(Expression<Func<T, bool>> expression);
         void Add(T entity);
         void AddRange(IEnumerable<T> entities);

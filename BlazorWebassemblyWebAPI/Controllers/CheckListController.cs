@@ -5,6 +5,7 @@ using BlazorTestProject.Entities;
 using CheckListLibrary;
 using CheckListLibrary.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
 namespace BlazorWebassemblyWebAPI.Controllers
@@ -13,11 +14,13 @@ namespace BlazorWebassemblyWebAPI.Controllers
     {
         private IGenericRepository<CheckList> CheckListRepository;
         private IGenericRepository<Entry> EntryRepository;
+        private BlazorContext Context;
         
         public CheckListController(BlazorContext context,
             IGenericRepository<CheckList> checkListRepository,
             IGenericRepository<Entry> entryRepository)
         {
+            Context = context;
             EntryRepository = entryRepository;
             CheckListRepository = checkListRepository;
         }
@@ -33,10 +36,10 @@ namespace BlazorWebassemblyWebAPI.Controllers
         
         [HttpGet]
         [Route("API/GetAllCheckList")]
-        public ActionResult<List<CheckList>> GetAllCheckLists()
+        public ActionResult<IEnumerable<CheckList>> GetAllCheckLists()
         {
-            List<CheckList> checklists = CheckListRepository.GetAll(true,e => ((CheckList)e).Entries).ToList();
-            return checklists;
+            IEnumerable<CheckList> checklists = CheckListRepository.GetAll(entityToInclude:"Entries").Result;
+            return Ok(checklists);
         }
         
         [HttpPost]

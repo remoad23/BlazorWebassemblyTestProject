@@ -1,5 +1,5 @@
 ﻿<StaticWebAssets Version="1.0">
-  <ContentRoot BasePath="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication" Path="C:\Users\PatrickPavlenko\.nuget\packages\microsoft.aspnetcore.components.webassembly.authentication\5.0.9\build\..\staticwebassets\" />
-  <ContentRoot BasePath="/" Path="C:\Users\PatrickPavlenko\RiderProjects\BlazorWebassemblyTestProject\BlazorWASMProject\bin\Debug\net5.0\wwwroot\" />
-  <ContentRoot BasePath="/" Path="C:\Users\PatrickPavlenko\RiderProjects\BlazorWebassemblyTestProject\BlazorWASMProject\obj\Debug\net5.0\scopedcss\bundle\" />
+  <ContentRoot BasePath="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication" Path="C:\Users\paddy\.nuget\packages\microsoft.aspnetcore.components.webassembly.authentication\5.0.9\build\..\staticwebassets\" />
+  <ContentRoot BasePath="/" Path="C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\BlazorWASMProject\bin\Debug\net5.0\wwwroot\" />
+  <ContentRoot BasePath="/" Path="C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\BlazorWASMProject\obj\Debug\net5.0\scopedcss\bundle\" />
 </StaticWebAssets>

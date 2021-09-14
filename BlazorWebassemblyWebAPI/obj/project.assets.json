@@ -3050,19 +3050,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PatrickPavlenko\\.nuget\\packages\\": {}
+    "C:\\Users\\paddy\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PatrickPavlenko\\RiderProjects\\BlazorWebassemblyTestProject\\BlazorWebassemblyWebAPI\\BlazorWebassemblyWebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\BlazorWebassemblyWebAPI\\BlazorWebassemblyWebAPI.csproj",
       "projectName": "BlazorWebassemblyWebAPI",
-      "projectPath": "C:\\Users\\PatrickPavlenko\\RiderProjects\\BlazorWebassemblyTestProject\\BlazorWebassemblyWebAPI\\BlazorWebassemblyWebAPI.csproj",
-      "packagesPath": "C:\\Users\\PatrickPavlenko\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PatrickPavlenko\\RiderProjects\\BlazorWebassemblyTestProject\\BlazorWebassemblyWebAPI\\obj\\",
+      "projectPath": "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\BlazorWebassemblyWebAPI\\BlazorWebassemblyWebAPI.csproj",
+      "packagesPath": "C:\\Users\\paddy\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\BlazorWebassemblyWebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\PatrickPavlenko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\paddy\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3076,8 +3076,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\PatrickPavlenko\\RiderProjects\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj": {
-              "projectPath": "C:\\Users\\PatrickPavlenko\\RiderProjects\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj"
+            "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj": {
+              "projectPath": "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj"
             }
           }
         }
@@ -3145,12 +3145,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.8, 5.0.8]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -3159,7 +3153,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.7.21379.14\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
