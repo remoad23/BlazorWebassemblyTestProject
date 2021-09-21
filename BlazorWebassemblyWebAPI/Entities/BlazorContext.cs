@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BlazorWebassemblyWebAPI.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazorTestProject.Entities
 {
-    public class BlazorContext : DbContext
+    public class BlazorContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<CheckList> CheckLists { get; set; }
         public DbSet<Entry> Entries { get; set; }

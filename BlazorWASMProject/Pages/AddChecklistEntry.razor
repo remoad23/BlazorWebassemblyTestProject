@@ -5,6 +5,7 @@
 @using BlazorWebassemblyWebAPI.Repository
 @using CheckListLibrary.Interfaces
 @inject IGenericRepository<Entry> EntryRepository
+@attribute [Authorize]
 
 
 @*<EditForm Model="EntryText" OnValidSubmit="SubmitForm">

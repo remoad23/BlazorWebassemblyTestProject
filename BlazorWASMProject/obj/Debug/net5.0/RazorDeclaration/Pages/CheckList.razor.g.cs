@@ -26,13 +26,6 @@ using System.Net.Http.Json;
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
-using Microsoft.AspNetCore.Components.Authorization;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 4 "C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -76,20 +69,27 @@ using Microsoft.JSInterop;
 #nullable disable
 #nullable restore
 #line 10 "C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 11 "C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
-using BlazorWASMProject;
+using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 12 "C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
+using BlazorWASMProject;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
 using BlazorWASMProject.Shared;
 
 #line default
@@ -137,6 +137,13 @@ using Microsoft.AspNetCore.Components;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\BlazorWASMProject\Pages\CheckList.razor"
+           [Authorize]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/CheckList")]
     public partial class CheckList : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -146,7 +153,7 @@ using Microsoft.AspNetCore.Components;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 43 "C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\BlazorWASMProject\Pages\CheckList.razor"
+#line 44 "C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\BlazorWASMProject\Pages\CheckList.razor"
        
 
     public List<Entities.CheckList> CheckLists { get; set; } = new List<Entities.CheckList>();

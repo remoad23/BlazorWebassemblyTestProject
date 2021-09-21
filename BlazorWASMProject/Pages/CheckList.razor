@@ -8,6 +8,7 @@
 @inject NavigationManager NavigationManager
 @inject IGenericRepository<Entities.CheckList> CheckListRepository
 @inject IGenericRepository<Entities.Entry> EntryRepository
+@attribute [Authorize]
 
 <h2>CheckList</h2>
 @foreach (Entities.CheckList checkList in CheckLists)

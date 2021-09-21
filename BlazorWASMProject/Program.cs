@@ -4,9 +4,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Text;
 using BlazorWASMProject;
+using BlazorWASMProject.Factories;
 using BlazorWASMProject.Repository;
+using BlazorWASMProject.Services;
+using BlazorWASMProject.Services.Interfaces;
 using BlazorWebassemblyWebAPI.Repository;
 using CheckListLibrary.Interfaces;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +36,13 @@ namespace BlazorWASMProject
                 // For more information, see https://aka.ms/blazor-standalone-auth
                 builder.Configuration.Bind("Local", options.ProviderOptions);
             });
-
+            
+            builder.Services.AddOptions();
+            builder.Services.AddAuthorizationCore();
+            builder.Services.AddScoped<CustomStateProvider>();
+            builder.Services.AddScoped<AuthenticationStateProvider>(s => s.GetRequiredService<CustomStateProvider>());
+            builder.Services.AddScoped<IAuthService, AuthService>();
+            
             await builder.Build().RunAsync();
         }
     }

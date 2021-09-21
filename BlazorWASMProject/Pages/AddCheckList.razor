@@ -2,6 +2,7 @@
 @using BlazorWebassemblyWebAPI.Repository
 @using CheckListLibrary.Interfaces
 @inject IGenericRepository<Entities.CheckList> ChecklistRepository
+@attribute [Authorize]
 
 <h3>AddCheckList</h3>
 <span>CheckList Name</span>
