@@ -10,4 +10,4 @@ build_property.EnableSingleFileAnalyzer =
 build_property.EnableTrimAnalyzer = true
 build_property.IncludeAllContentForSelfExtract = 
 build_property.RootNamespace = BlazorWASMProject
-build_property.ProjectDir = C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\BlazorWASMProject\
+build_property.ProjectDir = S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\

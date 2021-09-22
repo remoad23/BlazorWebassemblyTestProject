@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\BlazorWASMProject\\BlazorWASMProject.csproj": {}
+    "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\BlazorWASMProject\\BlazorWASMProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\BlazorWASMProject\\BlazorWASMProject.csproj": {
+    "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\BlazorWASMProject\\BlazorWASMProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\BlazorWASMProject\\BlazorWASMProject.csproj",
+        "projectUniqueName": "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\BlazorWASMProject\\BlazorWASMProject.csproj",
         "projectName": "BlazorWASMProject",
-        "projectPath": "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\BlazorWASMProject\\BlazorWASMProject.csproj",
-        "packagesPath": "C:\\Users\\paddy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\BlazorWASMProject\\obj\\",
+        "projectPath": "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\BlazorWASMProject\\BlazorWASMProject.csproj",
+        "packagesPath": "C:\\Users\\PatrickPavlenko\\.nuget\\packages\\",
+        "outputPath": "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\BlazorWASMProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\paddy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PatrickPavlenko\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,14 +22,16 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/7Kc7u3QJSIpYDprZHkQOfEYiW5Id1nfoKA7zrMPD7yxaKjRDkr/api": {},
+          "https://streambase.pkgs.visualstudio.com/_packaging/streamBASE/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj": {
-                "projectPath": "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj"
+              "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj": {
+                "projectPath": "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj"
               }
             }
           }
@@ -116,17 +118,17 @@
         }
       }
     },
-    "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj": {
+    "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj",
+        "projectUniqueName": "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj",
         "projectName": "CheckListLibrary",
-        "projectPath": "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj",
-        "packagesPath": "C:\\Users\\paddy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\CheckListLibrary\\obj\\",
+        "projectPath": "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj",
+        "packagesPath": "C:\\Users\\PatrickPavlenko\\.nuget\\packages\\",
+        "outputPath": "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\CheckListLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\paddy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PatrickPavlenko\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -134,7 +136,9 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/7Kc7u3QJSIpYDprZHkQOfEYiW5Id1nfoKA7zrMPD7yxaKjRDkr/api": {},
+          "https://streambase.pkgs.visualstudio.com/_packaging/streamBASE/nuget/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.1": {

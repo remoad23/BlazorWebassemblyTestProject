@@ -18,3 +18,13 @@ C:\Users\PatrickPavlenko\RiderProjects\BlazorWebassemblyTestProject\CheckListLib
 C:\Users\PatrickPavlenko\RiderProjects\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.dll
 C:\Users\PatrickPavlenko\RiderProjects\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.pdb
 C:\Users\paddy\RiderProjects\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.csproj.AssemblyReference.cache
+S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\CheckListLibrary\bin\Debug\netstandard2.1\CheckListLibrary.deps.json
+S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\CheckListLibrary\bin\Debug\netstandard2.1\CheckListLibrary.dll
+S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\CheckListLibrary\bin\Debug\netstandard2.1\CheckListLibrary.pdb
+S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.csproj.AssemblyReference.cache
+S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.GeneratedMSBuildEditorConfig.editorconfig
+S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.AssemblyInfoInputs.cache
+S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.AssemblyInfo.cs
+S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.csproj.CoreCompileInputs.cache
+S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.dll
+S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\CheckListLibrary\obj\Debug\netstandard2.1\CheckListLibrary.pdb

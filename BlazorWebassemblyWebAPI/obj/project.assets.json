@@ -3785,19 +3785,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\paddy\\.nuget\\packages\\": {}
+    "C:\\Users\\PatrickPavlenko\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\BlazorWebassemblyWebAPI\\BlazorWebassemblyWebAPI.csproj",
+      "projectUniqueName": "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\BlazorWebassemblyWebAPI\\BlazorWebassemblyWebAPI.csproj",
       "projectName": "BlazorWebassemblyWebAPI",
-      "projectPath": "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\BlazorWebassemblyWebAPI\\BlazorWebassemblyWebAPI.csproj",
-      "packagesPath": "C:\\Users\\paddy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\BlazorWebassemblyWebAPI\\obj\\",
+      "projectPath": "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\BlazorWebassemblyWebAPI\\BlazorWebassemblyWebAPI.csproj",
+      "packagesPath": "C:\\Users\\PatrickPavlenko\\.nuget\\packages\\",
+      "outputPath": "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\BlazorWebassemblyWebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\paddy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\PatrickPavlenko\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3805,14 +3805,16 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.devexpress.com/7Kc7u3QJSIpYDprZHkQOfEYiW5Id1nfoKA7zrMPD7yxaKjRDkr/api": {},
+        "https://streambase.pkgs.visualstudio.com/_packaging/streamBASE/nuget/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj": {
-              "projectPath": "C:\\Users\\paddy\\RiderProjects\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj"
+            "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj": {
+              "projectPath": "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\CheckListLibrary\\CheckListLibrary.csproj"
             }
           }
         }

@@ -1,11 +1,17 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using BlazorWebassemblyWebAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using BlazorWebassemblyWebAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace BlazorWebassemblyWebAPI.Controllers
 {
@@ -14,25 +20,30 @@ namespace BlazorWebassemblyWebAPI.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        public AuthController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        private IJwtService JwtService;
+        
+        public AuthController(UserManager<ApplicationUser> userManager, 
+            SignInManager<ApplicationUser> signInManager,
+            IJwtService jwtService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            JwtService = jwtService;
         }
         
         [Route("api/auth/login")]
         [HttpPost]
         public async Task<IActionResult> Login([FromBody]LoginRequest request)
         {
-            var user = await _userManager.FindByNameAsync(request.UserName).ConfigureAwait(false);
-            if (user == null) return BadRequest("User does not exist");
-            var singInResult = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
-            if (!singInResult.Succeeded) return BadRequest("Invalid password");
-            Console.WriteLine("Succeeded:  "+ singInResult.Succeeded);
-            await _signInManager.SignInAsync(user, request.RememberMe).ConfigureAwait(false);
-            Console.WriteLine("IdentityVal:  "+_signInManager.IsSignedIn(User));
-            Console.WriteLine(Request.Cookies.Count());
-            return Ok();
+            var user = await _userManager.FindByNameAsync(request.UserName);
+            if (user == null || !await _userManager.CheckPasswordAsync(user, request.Password))
+                return Unauthorized();
+
+            return Ok(new LoginResponse
+            {
+                Sucess = true,
+                Token = JwtService.GenerateJwtToken(JwtService.GetClaims(user))
+            });
         }
         
         [Route("api/auth/register")]
@@ -61,6 +72,7 @@ namespace BlazorWebassemblyWebAPI.Controllers
         
         [Route("api/auth/currentuserinfo")]
         [HttpGet]
+        [Authorize]
         public ActionResult<CurrentUser> CurrentUserInfo()
         {
             var currentUser = new CurrentUser
