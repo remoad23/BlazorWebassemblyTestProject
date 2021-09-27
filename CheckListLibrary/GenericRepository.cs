@@ -31,17 +31,28 @@ namespace CheckListLibrary
             return _context.Set<T>().Where(expression);
         }
         
-        public Task<IEnumerable<T>>  GetAll(string entityToInclude = "")
+        #nullable enable
+        public Task<IEnumerable<T>>  GetAll(string entityToInclude = "",Expression<Func<T, bool>>? expression = null)
         {
             if (!entityToInclude.Equals(""))
             {
-                return Task.FromResult(_context.Set<T>().Include("Entries").AsEnumerable());
+                if (expression != null)
+                {
+                    return Task.FromResult(_context.Set<T>().Include(entityToInclude).Where(expression).AsEnumerable());
+                }
+                else
+                {
+                    return Task.FromResult(_context.Set<T>().Include(entityToInclude).AsEnumerable());
+                }
+                
             }
             else 
             {
                 return Task.FromResult(_context.Set<T>().AsEnumerable());
             }
         }
+        
+        #nullable disable
         public T GetById(int id) 
         {
             return _context.Set<T>().Find(id);

@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using BlazorWASMProject.Services.Interfaces;
 using System.Text.Json;
+using BlazorWebassemblyWebAPI.Services.Interfaces;
 
-namespace BlazorWASMProject.Services
+namespace BlazorWebassemblyWebAPI.Services
 {
     public class JwtParser : IJwtParser
     {

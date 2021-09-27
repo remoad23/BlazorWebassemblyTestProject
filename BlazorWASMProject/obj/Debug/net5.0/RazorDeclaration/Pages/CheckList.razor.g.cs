@@ -26,6 +26,13 @@ using System.Net.Http.Json;
 #line hidden
 #nullable disable
 #nullable restore
+#line 3 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 4 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -69,56 +76,49 @@ using Microsoft.JSInterop;
 #nullable disable
 #nullable restore
 #line 10 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
-using Microsoft.AspNetCore.Components.Authorization;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 11 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
-using Microsoft.AspNetCore.Authorization;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 12 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
 using BlazorWASMProject;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
+#line 11 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
 using BlazorWASMProject.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\Pages\CheckList.razor"
-using System.Text.Json;
+#line 12 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
+using Blazored.LocalStorage;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
+using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 3 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\Pages\CheckList.razor"
-using BlazorWASMProject.Entities;
+using System.Text.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 4 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\Pages\CheckList.razor"
-using BlazorWASMProject.Repository;
+using BlazorWASMProject.Entities;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 5 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\Pages\CheckList.razor"
-using BlazorWebassemblyWebAPI.Repository;
+using BlazorWASMProject.Repository;
 
 #line default
 #line hidden
@@ -133,6 +133,13 @@ using CheckListLibrary.Interfaces;
 #nullable restore
 #line 7 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\Pages\CheckList.razor"
 using Microsoft.AspNetCore.Components;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
+[Authorize]
 
 #line default
 #line hidden
@@ -153,7 +160,7 @@ using Microsoft.AspNetCore.Components;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 44 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\Pages\CheckList.razor"
+#line 47 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\Pages\CheckList.razor"
        
 
     public List<Entities.CheckList> CheckLists { get; set; } = new List<Entities.CheckList>();
@@ -179,6 +186,11 @@ using Microsoft.AspNetCore.Components;
         {
             var checkListToPass = await CheckListRepository.GetAll().ConfigureAwait(false);
             CheckLists = checkListToPass.ToList();
+            foreach (Entities.CheckList checklist in CheckLists)
+            {
+                if (checklist.Entries is null)
+                    checklist.Entries = new List<Entry>();
+            }
         }
         catch (Exception e)
         {

@@ -1,8 +1,10 @@
 ﻿@page "/"
+@attribute [Authorize]
+
+
 <AuthorizeView>
     <Authorized>
         <h1>Hello @context.User.Identity.Name !!</h1>
-        <p>Welcome to Blazor Learner.</p>
     </Authorized>
     <Authorizing>
         <h1>Loading ...</h1>

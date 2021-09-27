@@ -1,7 +1,9 @@
 ﻿@using BlazorWASMProject.Services
+@using Microsoft.AspNetCore.Routing
 @inherits LayoutComponentBase
 @inject NavigationManager navigationManager
 @inject CustomStateProvider authStateProvider
+
 <div class="sidebar">
     <NavMenu />
 </div>
@@ -17,13 +19,19 @@
 @code{
     [CascadingParameter]
     Task<AuthenticationState> AuthenticationState { get; set; }
+    
     protected override async Task OnParametersSetAsync()
     {
+
+        Console.WriteLine((await AuthenticationState).User.Identity.IsAuthenticated);
+        /*
         if (!(await AuthenticationState).User.Identity.IsAuthenticated)
         {
             navigationManager.NavigateTo("/login");
-        }
+        }  */
+        
     }
+
     async Task LogoutClick()
     {
         await authStateProvider.Logout();

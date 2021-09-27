@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 
-namespace BlazorWASMProject.Services.Interfaces
+namespace BlazorWebassemblyWebAPI.Services.Interfaces
 {
     public interface IJwtParser
     {

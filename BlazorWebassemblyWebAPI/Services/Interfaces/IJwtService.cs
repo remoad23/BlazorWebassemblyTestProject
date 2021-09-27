@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -7,14 +8,12 @@ using Microsoft.IdentityModel.Tokens;
 namespace BlazorWebassemblyWebAPI.Services.Interfaces
 {
     public interface IJwtService
-    {
-        SigningCredentials GetSigningCredentials();
+    { 
+        public dynamic GenerateJwtToken(ApplicationUser user);
+        private SigningCredentials GetSigningCredentials() => throw new NotImplementedException();
         
-        List<Claim> GetClaims(ApplicationUser user);
-        
-        JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims);
-        
-        dynamic GenerateJwtToken(List<Claim> userClaims);
+        private List<Claim> GetClaims(ApplicationUser user) => throw new NotImplementedException();
 
+        private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims) => throw new NotImplementedException();
     }
 }

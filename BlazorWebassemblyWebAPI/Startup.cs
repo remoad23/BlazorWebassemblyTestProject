@@ -8,6 +8,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using BlazorTestProject.Entities;
 using BlazorWebassemblyWebAPI.Controllers;
+using BlazorWebassemblyWebAPI.Entities;
 using BlazorWebassemblyWebAPI.Models;
 using BlazorWebassemblyWebAPI.Repositories;
 using BlazorWebassemblyWebAPI.Services;
@@ -61,7 +62,8 @@ namespace BlazorWebassemblyWebAPI
             
             services.AddTransient(typeof(IGenericRepository<>),typeof(BlazorRepository<>));
             services.AddTransient<IJwtService,JwtService>();
-            
+            services.AddTransient<IJwtParser,JwtParser>();
+
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<BlazorContext>();
 
             services.AddAuthentication();

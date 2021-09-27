@@ -1,8 +1,9 @@
-﻿using BlazorWebassemblyWebAPI.Models;
+﻿using BlazorTestProject.Entities;
+using BlazorWebassemblyWebAPI.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorTestProject.Entities
+namespace BlazorWebassemblyWebAPI.Entities
 {
     public class BlazorContext : IdentityDbContext<ApplicationUser>
     {

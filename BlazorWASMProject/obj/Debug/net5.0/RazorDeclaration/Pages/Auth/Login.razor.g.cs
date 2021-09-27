@@ -26,6 +26,13 @@ using System.Net.Http.Json;
 #line hidden
 #nullable disable
 #nullable restore
+#line 3 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 4 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -69,28 +76,28 @@ using Microsoft.JSInterop;
 #nullable disable
 #nullable restore
 #line 10 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
-using Microsoft.AspNetCore.Components.Authorization;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 11 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
-using Microsoft.AspNetCore.Authorization;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 12 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
 using BlazorWASMProject;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
+#line 11 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
 using BlazorWASMProject.Shared;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
+using Blazored.LocalStorage;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
+using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
@@ -116,8 +123,22 @@ using BlazorWASMProject.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 14 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
+[Authorize]
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 8 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\Pages\Auth\Login.razor"
+           [AllowAnonymous]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(AuthLayout))]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Login")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/login")]
     public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -126,7 +147,7 @@ using BlazorWASMProject.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 30 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\Pages\Auth\Login.razor"
+#line 32 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\Pages\Auth\Login.razor"
       
     
     LoginRequest loginRequest { get; set; } = new LoginRequest();

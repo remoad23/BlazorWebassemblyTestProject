@@ -27,6 +27,13 @@ using System.Net.Http.Json;
 #line hidden
 #nullable disable
 #nullable restore
+#line 3 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 4 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -70,28 +77,28 @@ using Microsoft.JSInterop;
 #nullable disable
 #nullable restore
 #line 10 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
-using Microsoft.AspNetCore.Components.Authorization;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 11 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
-using Microsoft.AspNetCore.Authorization;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 12 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
 using BlazorWASMProject;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
+#line 11 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
 using BlazorWASMProject.Shared;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
+using Blazored.LocalStorage;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
+using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
@@ -99,6 +106,20 @@ using BlazorWASMProject.Shared;
 #nullable restore
 #line 1 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\Shared\MainLayout.razor"
 using BlazorWASMProject.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\Shared\MainLayout.razor"
+using Microsoft.AspNetCore.Routing;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\_Imports.razor"
+[Authorize]
 
 #line default
 #line hidden
@@ -111,17 +132,23 @@ using BlazorWASMProject.Services;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 17 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\Shared\MainLayout.razor"
+#line 19 "S:\streamBASE\SourceCodes\BlazorWebassemblyTestProject\BlazorWASMProject\Shared\MainLayout.razor"
       
     [CascadingParameter]
     Task<AuthenticationState> AuthenticationState { get; set; }
+    
     protected override async Task OnParametersSetAsync()
     {
+
+        Console.WriteLine((await AuthenticationState).User.Identity.IsAuthenticated);
+        /*
         if (!(await AuthenticationState).User.Identity.IsAuthenticated)
         {
             navigationManager.NavigateTo("/login");
-        }
+        }  */
+        
     }
+
     async Task LogoutClick()
     {
         await authStateProvider.Logout();

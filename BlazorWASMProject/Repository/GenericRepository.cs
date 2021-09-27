@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using BlazorWASMProject.Entities;
+using BlazorWASMProject.Services;
+using BlazorWASMProject.Services.Interfaces;
 using CheckListLibrary.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -19,28 +22,44 @@ namespace BlazorWASMProject.Repository
         private readonly IConfiguration Configuration;
         private string Url;
         private string TypeName;
+        private ILocalStorageService LocalStorageService;
         
-        public GenericRepository(HttpClient http,IConfiguration configuration)
+        public GenericRepository(HttpClient http,IConfiguration configuration,ILocalStorageService localStorageService)
         {
             Http = http;
             Configuration = configuration;
             Url = Configuration["RepositorySettings:URL"];
             TypeName = typeof(T).Name;
+            Init();
         }
         
+        
+        private async Task Init()
+        {
+            await InsertJwtTokenIntoHttpClient();
+        }
+
+        private async Task InsertJwtTokenIntoHttpClient()
+        {
+            var token = (string)( await LocalStorageService.GetLocalStorage("authToken") );
+            if(token is not null && !token.Equals(""))
+                Http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+        }
         
         public T GetById(int id)
         {
             return Task.Run( () => this.Http.GetFromJsonAsync<T>($"{Url}/Get{TypeName}/{id}")).Result;
         }
 
-        public async Task<IEnumerable<T>> GetAll(string entityToInclude = "")
+        #nullable  enable
+        public async Task<IEnumerable<T>> GetAll(string entityToInclude = "",Expression<Func<T, bool>>? expression = null)
         {
-            var result = await this.Http.GetFromJsonAsync<List<T>>($"{Url}/GetAll{TypeName}")
+            var result = await this.Http.GetFromJsonAsync<IEnumerable<T>>($"{Url}/GetAll{TypeName}")
                  .ConfigureAwait(continueOnCapturedContext: false);
                 
              return  result;
         }
+        #nullable disable
 
         public void Add(T entity)
         {
@@ -51,8 +70,7 @@ namespace BlazorWASMProject.Repository
         {
             #nullable enable
             var id = entity.GetType()?.GetProperty("Id")?.GetValue(entity, null);
-            if(id is string)
-                Task.Run( () => this.Http.DeleteAsync($"{Url}/Delete{TypeName}/{id}"));
+            Task.Run( () => this.Http.DeleteAsync($"{Url}/Delete{TypeName}/{id}"));
             #nullable disable
         }
         

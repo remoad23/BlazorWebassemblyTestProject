@@ -1,8 +1,8 @@
 ﻿@page "/CheckList"
+
 @using System.Text.Json
 @using BlazorWASMProject.Entities
 @using BlazorWASMProject.Repository
-@using BlazorWebassemblyWebAPI.Repository
 @using CheckListLibrary.Interfaces
 @using Microsoft.AspNetCore.Components
 @inject NavigationManager NavigationManager
@@ -22,15 +22,18 @@
             <th style="width: 100px">Description</th>
             <th style="width: 100px">Status</th>
             </thead>
-            @foreach (Entities.Entry entry in checkList.Entries)
+            @if (checkList.Entries is not null)
             {
-                <tr>
-                    <td style="width: 300px">@entry.EntryText</td>
-                    <td style="width: 100px">@(entry.IsDone ? " Done" : " In progress")</td>
-                    <td style="width: 100px" @onclick="() => DeleteEntry(entry, checkList.Entries)">
-                        <button>Entfernen</button>
-                    </td>
-                </tr>
+                @foreach (Entities.Entry entry in checkList.Entries)
+                {
+                    <tr>
+                        <td style="width: 300px">@entry.EntryText</td>
+                        <td style="width: 100px">@(entry.IsDone ? " Done" : " In progress")</td>
+                        <td style="width: 100px" @onclick="() => DeleteEntry(entry, checkList.Entries)">
+                            <button>Entfernen</button>
+                        </td>
+                    </tr>
+                }
             }
         </table>
         <CascadingValue Value="checkList.Entries" Name="EntryList">
@@ -66,6 +69,11 @@
         {
             var checkListToPass = await CheckListRepository.GetAll().ConfigureAwait(false);
             CheckLists = checkListToPass.ToList();
+            foreach (Entities.CheckList checklist in CheckLists)
+            {
+                if (checklist.Entries is null)
+                    checklist.Entries = new List<Entry>();
+            }
         }
         catch (Exception e)
         {

@@ -19,7 +19,24 @@ namespace BlazorWebassemblyWebAPI.Services
             Configuration = configuration;
         }
         
-        public SigningCredentials GetSigningCredentials() 
+        public dynamic GenerateJwtToken(ApplicationUser user)
+        {
+            var signingCredentials = GetSigningCredentials();
+            var tokenOptions = GenerateTokenOptions(signingCredentials, GetClaims(user));
+            return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+        }
+        
+        private List<Claim> GetClaims(ApplicationUser user) 
+        { 
+            var claims = new List<Claim> 
+            { 
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.NameIdentifier,user.Id),
+            };
+            return claims; 
+        }
+        
+        private SigningCredentials GetSigningCredentials() 
         { 
             var _jwtSettings = Configuration.GetSection("JWTSettings"); 
             var key = Encoding.UTF8.GetBytes(_jwtSettings["securityKey"]); 
@@ -28,17 +45,8 @@ namespace BlazorWebassemblyWebAPI.Services
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256); 
         }
         
-        public List<Claim> GetClaims(ApplicationUser user) 
-        { 
-            var claims = new List<Claim> 
-            { 
-                new Claim(ClaimTypes.Name, user.Email) 
-            }; 
-            
-            return claims; 
-        }
         
-        public JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims) 
+        private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims) 
         { 
             var _jwtSettings = Configuration.GetSection("JWTSettings"); 
             var tokenOptions = new JwtSecurityToken(
@@ -50,12 +58,6 @@ namespace BlazorWebassemblyWebAPI.Services
             
             return tokenOptions; 
         }
-
-        public dynamic GenerateJwtToken(List<Claim> userClaims)
-        {
-            var signingCredentials = GetSigningCredentials();
-            var tokenOptions = GenerateTokenOptions(signingCredentials, userClaims);
-            return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
-        }
+        
     }
 }

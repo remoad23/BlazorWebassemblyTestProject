@@ -3,11 +3,12 @@ using System.Net.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Text;
+using System.Text.Json.Serialization;
+using Blazored.LocalStorage;
 using BlazorWASMProject;
 using BlazorWASMProject.Repository;
 using BlazorWASMProject.Services;
 using BlazorWASMProject.Services.Interfaces;
-using BlazorWebassemblyWebAPI.Repository;
 using CheckListLibrary.Interfaces;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -15,6 +16,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ILocalStorageService = BlazorWASMProject.Services.Interfaces.ILocalStorageService;
 
 namespace BlazorWASMProject
 {
@@ -35,12 +37,14 @@ namespace BlazorWASMProject
                 // For more information, see https://aka.ms/blazor-standalone-auth
                 builder.Configuration.Bind("Local", options.ProviderOptions);
             });
-
+            
             builder.Services.AddOptions();
             builder.Services.AddAuthorizationCore();
             builder.Services.AddScoped<CustomStateProvider>();
             builder.Services.AddScoped<AuthenticationStateProvider>(s => s.GetRequiredService<CustomStateProvider>());
             builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
+            builder.Services.AddBlazoredLocalStorage();
 
             await builder.Build().RunAsync();
         }

@@ -1,10 +1,11 @@
-@page "/Login"
+@page "/login"
 @using BlazorWASMProject.Services
 @using Microsoft.AspNetCore.Components
 @using BlazorWASMProject.Models
 @layout AuthLayout
 @inject NavigationManager navigationManager
 @inject CustomStateProvider authStateProvider
+@attribute [AllowAnonymous]
 
 <h1 class="h2 font-weight-normal login-title">
     Login
@@ -27,6 +28,7 @@
         <h6 class="font-weight-normal text-center">Create account</h6>
     </NavLink>
 </EditForm>
+
 @code{
     
     LoginRequest loginRequest { get; set; } = new LoginRequest();

@@ -1,4 +1,5 @@
 using BlazorTestProject.Entities;
+using BlazorWebassemblyWebAPI.Entities;
 using CheckListLibrary;
 
 namespace BlazorWebassemblyWebAPI.Repositories
