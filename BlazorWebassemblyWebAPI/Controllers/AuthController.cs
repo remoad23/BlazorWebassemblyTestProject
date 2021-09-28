@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -8,11 +9,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Text;
 using BlazorTestProject.Entities;
 using BlazorWebassemblyWebAPI.Services;
 using BlazorWebassemblyWebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 
 namespace BlazorWebassemblyWebAPI.Controllers
@@ -88,10 +91,39 @@ namespace BlazorWebassemblyWebAPI.Controllers
             var nameClaim = claims.Single(c => c.Type.Equals(ClaimTypes.Name)); //.Where(c => c.Type.Equals(ClaimTypes.Name)).FirstOrDefault();
             ApplicationUser queriedUser = await Usermanager.FindByNameAsync(nameClaim.Value);
             
-            Console.WriteLine("user "+(queriedUser != null).ToString());
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SecretKeyWhichIsNotReallySecret"));
+
+            bool validated = true;
+            var jwt = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+            
+            try
+            {
+                tokenHandler.ValidateToken(jwt, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = false,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = key,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidIssuer = "BlazorWASM", 
+                    ValidAudience = "https://localhost:5010", 
+                }, out SecurityToken validatedToken);
+            }
+            catch(SecurityTokenException)
+            {
+                validated =  false; 
+            }
+            catch(Exception e)
+            { 
+                Console.WriteLine(e.ToString());
+                throw;
+            }
+
+            
             var currentUser = new CurrentUser
             {
-                IsAuthenticated = queriedUser != null,
+                IsAuthenticated = queriedUser != null && validated,
                 UserName = nameClaim.Value ?? "",
                 Claims = claims?.ToDictionary(c => c.Type, c => c.Value) 
             };

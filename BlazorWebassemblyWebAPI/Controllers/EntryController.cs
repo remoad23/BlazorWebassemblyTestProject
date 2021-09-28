@@ -5,6 +5,7 @@ using BlazorTestProject.Entities;
 using CheckListLibrary;
 using CheckListLibrary.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlazorWebassemblyWebAPI.Controllers
 {
@@ -34,12 +35,15 @@ namespace BlazorWebassemblyWebAPI.Controllers
         }
         
         [HttpPost]
+        [Authorize(Policy = "JwtAuth")]
         [Route("API/CreateEntry")]
         public ActionResult<Entry> CreateEntry([FromBody]Entry entry)
         {
+            Console.WriteLine("test");
             EntryRepository.Add(entry);
             EntryRepository.Complete();
             return entry;
+
         }
         
         [HttpDelete]

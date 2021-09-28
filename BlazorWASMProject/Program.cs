@@ -20,6 +20,9 @@ using ILocalStorageService = BlazorWASMProject.Services.Interfaces.ILocalStorage
 
 namespace BlazorWASMProject
 {
+    /**
+     *  run program with ipv4 to access application on phone:  dotnet run --urls=http://192.168.1.103
+     */
     public class Program
     {
         public static async Task Main(string[] args)
@@ -38,6 +41,7 @@ namespace BlazorWASMProject
                 builder.Configuration.Bind("Local", options.ProviderOptions);
             });
             
+            
             builder.Services.AddOptions();
             builder.Services.AddAuthorizationCore();
             builder.Services.AddScoped<CustomStateProvider>();
@@ -47,6 +51,8 @@ namespace BlazorWASMProject
             builder.Services.AddBlazoredLocalStorage();
 
             await builder.Build().RunAsync();
+
+
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DWfVXHmF/oi+HnWZafIWeOzzQ28cfSLupXsTzOIdxqBzZ8tx7in55bbuLJhrLEhdYNeXqEEoz+QLs/yVaMzYkA==",
+  "dgSpecHash": "ThIWJ3i6fLsYLffD70V6JSiJ79uiNOQSnlbruZS8h8ACRvAVEBYQFX18Z8drFnbeJM83hJEBnEI02CilwVHzNg==",
   "success": true,
   "projectFilePath": "S:\\streamBASE\\SourceCodes\\BlazorWebassemblyTestProject\\BlazorWASMProject\\BlazorWASMProject.csproj",
   "expectedPackageFiles": [
@@ -111,7 +111,7 @@
     "C:\\Users\\PatrickPavlenko\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
     "C:\\Users\\PatrickPavlenko\\.nuget\\packages\\system.threading.channels\\4.5.0\\system.threading.channels.4.5.0.nupkg.sha512",
     "C:\\Users\\PatrickPavlenko\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
-    "C:\\Users\\PatrickPavlenko\\.nuget\\packages\\microsoft.netcore.app.runtime.browser-wasm\\5.0.8\\microsoft.netcore.app.runtime.browser-wasm.5.0.8.nupkg.sha512"
+    "C:\\Users\\PatrickPavlenko\\.nuget\\packages\\microsoft.netcore.app.runtime.browser-wasm\\5.0.10\\microsoft.netcore.app.runtime.browser-wasm.5.0.10.nupkg.sha512"
   ],
   "logs": []
 }

@@ -11,6 +11,7 @@ using BlazorWebassemblyWebAPI.Controllers;
 using BlazorWebassemblyWebAPI.Entities;
 using BlazorWebassemblyWebAPI.Models;
 using BlazorWebassemblyWebAPI.Repositories;
+using BlazorWebassemblyWebAPI.Requirements;
 using BlazorWebassemblyWebAPI.Services;
 using BlazorWebassemblyWebAPI.Services.Interfaces;
 using CheckListLibrary;
@@ -65,9 +66,7 @@ namespace BlazorWebassemblyWebAPI
             services.AddTransient<IJwtParser,JwtParser>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<BlazorContext>();
-
-            services.AddAuthentication();
-            services.AddAuthorization();
+            
             
             var jwtSettings = Configuration.GetSection("JWTSettings"); 
             
@@ -79,14 +78,21 @@ namespace BlazorWebassemblyWebAPI
             { 
                 options.TokenValidationParameters = new TokenValidationParameters 
                 { 
-                    ValidateIssuer = true, 
-                    ValidateAudience = true, 
+                    ValidateIssuer = false, 
+                    ValidateAudience = false, 
                     ValidateLifetime = true, 
-                    ValidateIssuerSigningKey = true,
+                    ValidateIssuerSigningKey = false,
                     ValidIssuer = jwtSettings["validIssuer"], 
                     ValidAudience = jwtSettings["validAudience"], 
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["securityKey"])) 
                 }; 
+
+            });
+            
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("JwtAuth", 
+                    policy => policy.Requirements.Add(new AuthorizeJwt()));
             });
         }
 
